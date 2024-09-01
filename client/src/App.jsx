@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai"; // For icons
 import "./App.css";
+
 
 const App = () => {
   const [url, setUrl] = useState("");
