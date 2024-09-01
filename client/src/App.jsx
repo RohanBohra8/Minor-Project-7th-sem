@@ -30,14 +30,21 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
-      <div className="p-8 bg-white shadow-2xl rounded-lg w-full max-w-md transform hover:scale-105 transition-transform duration-300">
+    <div>
+      <div className="heading bg-white">
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-teal-500 from-blue-700">Automated Summarizer</span> </h1>
+        <p class="text-6xl font-extrabold text-gray-500 lg:text-3xl dark:text-black"> <span class="text-transparent bg-clip-text bg-gradient-to-r to-teal-500 from-blue-700">  And Q&A for Articles </span></p>
+
+      </div>
+      <div className="flex flex-col items-center min-h-screen bg-white">
+      <div className="p-8 bg-white shadow-[0_35px_100px_-10px_rgba(0,0,0,0.2)] rounded-lg w-full max-w-md transform hover:scale-105 transition-transform duration-300">
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
-          <div className="text-center mb-6">
+          {/* bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 */}
+          {/* <div className="text-center mb-6">
             <h1 className="text-2xl font-bold">Automated Summarizer and Q&A for Articles</h1>
-          </div>
+          </div> */}
           <label htmlFor="url" className="block text-lg font-semibold mb-4 text-center">
-            Enter Research Paper <span className="font-bold">URL</span>:-
+          <span class="text-transparent bg-clip-text bg-gradient-to-r to-teal-500 from-blue-700">Enter URL : </span>
           </label>
           <div className="flex items-center w-full mb-4">
             <input
@@ -80,6 +87,7 @@ const App = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };
