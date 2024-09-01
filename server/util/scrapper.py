@@ -14,18 +14,18 @@ def render_page(url):
         # Browse the URL
         page.goto(url)
 
-        with open('./test/test.html', 'w', encoding="utf-8") as file:
-            file.write(page.content())
+        # with open('./test/test.html', 'w', encoding="utf-8") as file:
+        #     file.write(page.content())
 
         # print(page.content())
 
         return page.content()
 
-url = "https://medium.com/@kasata/navigating-the-software-engineering-career-path-a-comprehensive-guide-d4ac4ed52a4b"
+# url = "https://medium.com/@kasata/navigating-the-software-engineering-career-path-a-comprehensive-guide-d4ac4ed52a4b"
 
 def add_to_file(text):
     with open('./test/test.txt', 'a') as file:
-        file.write(text)
+         file.write(text)
 
 
 def scrape_medium(url):
@@ -38,13 +38,15 @@ def scrape_medium(url):
 
     articles = soup.find_all('p', class_='pw-post-body-paragraph')
 
-    for article in articles:
-        add_to_file(article.text)
-        add_to_file('\n')
-        print(article.text)
-    print(articles)
+    article_content = ''
 
-scrape_medium(url)
+    for article in articles:
+        # add_to_file(article.text)
+        # add_to_file('\n')
+        article_content += article.text
+        print(article.text)
+
+    return article_content
 
 
 
