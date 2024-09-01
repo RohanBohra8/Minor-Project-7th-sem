@@ -1,42 +1,134 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* General Styling for the Body */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Light background for the entire app */
+  background: linear-gradient(to right, #c6e4f7, #fbc2eb);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Centering the Main Container */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: linear-gradient(to right, #c6e4f7, #fbc2eb); Gradient background */
+  padding: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Form Container Styling */
+.form-container {
+  background: #ffffff; /* White background for form */
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  transition: transform 0.3s ease; /* Smooth transform animation */
+}
+
+.form-container:hover {
+  transform: scale(1.05); /* Scale on hover */
+}
+
+/* Input Field Styling */
+input[type="url"] {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="url"]:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styling */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-left: -1px;
+}
+
+button:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Specific Button Styles */
+.bg-blue-500 {
+  background-color: #007bff;
+}
+
+.bg-blue-600:hover {
+  background-color: #0056b3;
+}
+
+.bg-green-500 {
+  background-color: #28a745;
+}
+
+.bg-green-600:hover {
+  background-color: #218838;
+}
+
+.bg-yellow-500 {
+  background-color: #ffc107;
+}
+
+.bg-yellow-600:hover {
+  background-color: #e0a800;
+}
+
+/* Loading Text Animation */
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Summary Box Styling */
+.summary-box {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+}
+
+.summary-box h2 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.summary-box p {
+  font-size: 1rem;
+  color: #333;
+}
+
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    opacity: 1;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  100% {
+    opacity: 0.5;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
