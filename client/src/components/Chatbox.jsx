@@ -57,7 +57,7 @@ const handleSend = () => {
         
           <div className="ml-3">
             <p className="text-xl font-medium">Q&A Assistant</p>
-            <p className="text-gray-500">Ask questions regarding your generated summary</p>
+            <p className="text-gray-500">Ask questions regarding the article</p>
           </div>
           <button
             onClick={onClose}
