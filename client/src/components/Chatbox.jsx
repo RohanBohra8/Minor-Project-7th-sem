@@ -27,7 +27,7 @@ const handleSend = () => {
         setIsLoading(true);
 
         // Simulate API call
-        fetch("http://localhost:5000/summarize", { //jo bhi ho api voh dekh lena jha se response ayega
+        fetch("http://localhost:5000/question-answering", { //jo bhi ho api voh dekh lena jha se response ayega
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const handleSend = () => {
         <div className="flex-grow p-2 overflow-y-auto bg-gray-50">
           {messages.map((msg, index) => (
             <div key={index} className={`mb-3 ${msg.isUser ? "text-right" : "text-left"}`}>
-              <div className={`inline-block px-4 py-2 rounded-full ${msg.isUser ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800"}`}>
+              <div className={`inline-block px-4 py-2 rounded-lg ${msg.isUser ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800"}`}>
                 {msg.text}
               </div>
             </div>
