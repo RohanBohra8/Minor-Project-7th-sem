@@ -184,7 +184,7 @@ const App = () => {
       }
 
       {summary && showSummary ? <Summary summary={summary} /> : null}
-      {showChatbox && <Chatbox onClose={() => setShowChatbox(false)} />}
+      {showChatbox && <Chatbox onClose={() => setShowChatbox(false)} sessionID = {sessionID}/>}
 
     </div>
   );

@@ -4,19 +4,10 @@ import { AiOutlineSend } from 'react-icons/ai'; // For send icon
 import { FaRegQuestionCircle } from "react-icons/fa";
 
 
-const Chatbox = ({ onClose }) => {
+const Chatbox = ({ onClose, sessionID }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([ //few hard coded mssgs here 
-    { text: "Hello!", isUser: true },
-    { text: "Hi there!", isUser: false },
-    { text: "How are you?", isUser: true },
-    { text: "I'm good, thanks!", isUser: false },
-    { text: "What about you?", isUser: true },
-    { text: "I'm doing great!", isUser: false },
-    { text: "That's good to hear!", isUser: true },
-    { text: "game khelga ?", isUser: false },
-    { text: "konsi?", isUser: true },
-    { text: "ghost of tshushima", isUser: false },
+    { text: "Hello! You can ask questions regarding the article.", isUser: false },
 ]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,17 +17,16 @@ const handleSend = () => {
         setMessage("");
         setIsLoading(true);
 
-        // Simulate API call
-        fetch("http://localhost:5000/question-answering", { //jo bhi ho api voh dekh lena jha se response ayega
+        fetch("http://localhost:5000/qa", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message }),
+            body: JSON.stringify({ question: message, session_id: sessionID}),
         })
             .then(response => response.json())
             .then(data => {
-                setMessages([...messages, { text: message, isUser: true }, { text: data.reply, isUser: false }]);
+                setMessages([...messages, { text: message, isUser: true }, { text: data.answer, isUser: false }]);
                 setIsLoading(false);
             })
             .catch(error => {
@@ -46,9 +36,15 @@ const handleSend = () => {
     }
 };
 
+const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+        handleSend();
+    }
+}
+
 
   return (
-    <div className="fixed bottom-0 right-0 m-4 w-full max-w-md bg-white border border-gray-300 rounded-lg shadow-lg">
+    <div className="fixed bottom-0 right-0 m-4 w-full max-w-md bg-white border border-gray-300 rounded-lg shadow-lg text-black">
       <div className="flex flex-col h-[500px]">
        
         <div className="p-2 bg-gray-100 border-b border-gray-300 flex items-center">
@@ -56,7 +52,7 @@ const handleSend = () => {
         <FaRegQuestionCircle size={"30px"}/>
         
           <div className="ml-3">
-            <p className="text-xl font-medium">Q&A Assistant</p>
+            <p className="text-xl font-medium">Question-Answering </p>
             <p className="text-gray-500">Ask questions regarding the article</p>
           </div>
           <button
@@ -83,6 +79,7 @@ const handleSend = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
             className="flex-grow px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Type your message..."
           />
