@@ -11,7 +11,8 @@ import sqlite3
 import os
 
 import util.scrapper as scrapper
-import util.db as db;
+import util.db as db
+import routes.qa as qa
 
 app = Flask(__name__)
 CORS(app)
@@ -98,9 +99,28 @@ def summarize():
     )
 
     print(response.content)
-
     response = {'summary': response.content}
 
+    return jsonify(response)
+
+@app.route("/qa", methods= ['POST'])
+def question_answering():
+    user_input = None
+
+    if request.method == 'POST':
+        user_input = request.json
+
+    if user_input is None:
+        return
+    
+    question = user_input.get('question')
+    session_id = user_input.get('session_id')
+
+    result = c.execute("SELECT article_content FROM Session WHERE session_id = ?", (session_id,))
+    article_content = result.fetchone()[0]
+    
+    answer = qa.handle_qa(question = question, content = article_content)
+    response = {'answer': answer}
     return jsonify(response)
 
 
