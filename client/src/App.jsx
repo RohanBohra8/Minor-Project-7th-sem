@@ -36,7 +36,7 @@ const App = () => {
 
     setIsLoading(true)
     e.preventDefault();
-    fetch("http://localhost:5000/search", {
+    fetch(import.meta.env.VITE_SERVER_URL + "/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const App = () => {
     if (summary) return;
 
     setIsSummaryLoading(true); // Show loader during processing
-    fetch("http://localhost:5000/summarize", {
+    fetch(import.meta.env.VITE_SERVER_URL+ "/summarize", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

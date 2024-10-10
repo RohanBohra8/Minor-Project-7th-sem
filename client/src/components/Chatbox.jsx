@@ -17,7 +17,7 @@ const handleSend = () => {
         setMessage("");
         setIsLoading(true);
 
-        fetch("http://localhost:5000/qa", { 
+        fetch(import.meta.env.VITE_SERVER_URL +"/qa", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
