@@ -1,5 +1,6 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
+import requests
 
 def render_page(url):
 # Start Playwright in a synchronous context
@@ -53,6 +54,35 @@ def scrape_medium(url):
         # print(article.text)
 
     return article_content, title, image_url
+
+
+def scrape_wikipedia(url):
+    response = requests.get(url)
+    # print(response.content)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    content = soup.find('main', class_='mw-body')
+    text = ''
+
+    if content:
+        paragraphs = content.find_all('p')
+
+        for paragraph in paragraphs:
+            text += paragraph.text + '\n'
+
+
+    title = content.find('span', class_ = 'mw-page-title-main').text
+
+    # extracting cover image
+    infobox = soup.find('table', class_='infobox')
+
+    image_url = ''
+
+    if infobox:
+        image = infobox.find('img')
+        if image:
+            image_url = 'https:' + image['src']
+
+    return text, title, image_url
 
 
 

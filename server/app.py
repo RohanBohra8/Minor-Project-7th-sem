@@ -1,4 +1,5 @@
 
+from urllib.parse import urlparse
 from langchain.prompts import PromptTemplate
 
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -51,7 +52,14 @@ def search():
         if request.method == 'POST':
             url = user_input.get('url')
 
-        article_content, title, image_url = scrapper.scrape_medium(url)
+        # get the host name by parsing the url
+        host_name = urlparse(url).hostname
+
+        # check the hostname to determine the scrapper to use
+        if 'medium' in host_name:
+            article_content, title, image_url = scrapper.scrape_medium(url)
+        if 'wikipedia' in host_name:
+            article_content, title, image_url = scrapper.scrape_wikipedia(url)
     
         c.execute("INSERT INTO Session (article_content) VALUES (?)", (article_content,))
         session_id = c.lastrowid
@@ -59,9 +67,7 @@ def search():
         print(session_id)
 
         conn.commit()
-    
         response = {'session_id': session_id, 'title': title, 'image_url': image_url}
-    
         return jsonify(response)
 
 
