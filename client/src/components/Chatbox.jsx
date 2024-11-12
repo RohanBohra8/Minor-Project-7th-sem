@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai'; // For send icon
+import {FaRegCopy, FaCopy} from 'react-icons/fa'; // For copy icon
 import { FaRegQuestionCircle } from "react-icons/fa";
 
 
@@ -43,6 +44,11 @@ const handleKeyDown = (event) => {
     }
 }
 
+const handleCopyButton = (msg) => {
+  navigator.clipboard.writeText(msg.text);
+  alert("Copied to clipboard!");
+}
+
 
   return (
     <div className="fixed bottom-0 right-0 m-4 w-full max-w-md bg-white border border-gray-300 rounded-lg shadow-lg text-black">
@@ -69,6 +75,10 @@ const handleKeyDown = (event) => {
             <div key={index} className={`mb-3 ${msg.isUser ? "text-right" : "text-left"}`}>
               <div className={`inline-block px-4 py-2 rounded-lg whitespace-pre-line ${msg.isUser ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800"}`}>
                 {msg.text}
+                <div className=' flex justify-end'>
+                <FaRegCopy size={10} className=" mr-2 cursor-pointer" onClick = {() => handleCopyButton(msg)} />
+                </div>
+                
               </div>
             </div>
           ))}
