@@ -32,6 +32,7 @@ const App = () => {
     setSummary('')
     setIsSummaryLoading(false)
     setShowSummary(false)
+    setShowChatbox(false)
     setError('')
 
     setIsLoading(true)
